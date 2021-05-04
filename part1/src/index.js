@@ -1,54 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
-const Header = () => {
-  return(
+const Counter = (props) => {
+  const [count, setCounter] = useState(5);
+  return (
     <div>
-      <h1>
-        Header {props.course}
-      </h1>
+      <h1>Step:{props.step}</h1>
+      <button onClick={() => {setCounter(Math.max(count-props.step, 0))}}>-</button>
+      <span>{Math.round(count*10)/10}</span>
+      <button onClick={() => {setCounter(Math.min(count+props.step, 10))}}>+</button>
     </div>
   )
 }
 
-const Content = () => {
-  <div>
-      <p>
-        Content {props.Content}
-      </p>
-    </div>
-}
-
-const Total = () => {
-  <div>
-      <p>
-        Total {props.Total}
-      </p>
-    </div>
-}
-
 const App = () => {
-  const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  return (
+    <main>
+      <h1>Counters</h1>
+      <Counter step={1}></Counter>
+      <Counter step={2}></Counter>
+      <Counter step={0.1}></Counter>
+    </main>
+  );
+};
 
-  const App = () => {
-    // const-definitions
-  
-    return (
-      <div>
-        <Header course={course} />
-        <Content  />
-        <Total  />
-      </div>
-    )
-  }
-
-ReactDOM.render(<App />, document.getElementById('root'))
-
-
+ReactDOM.render(<App />, document.getElementById("root"));
